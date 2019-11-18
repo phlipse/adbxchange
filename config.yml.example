@@ -1,0 +1,33 @@
+# Configuration file for adbXchange
+
+# This is an example!
+# Adjust all parameters to your needs.
+
+# Path to local Android directory.
+# Usually $HOME/.android
+# Could not be empty.
+android_directory_path: "C:/Users/FOOBAR/.android"
+
+# Path to local directory where the ADB keys are stored.
+# Format of filenames for keys:
+#  adbkey_<CUSTOM_IDENTIFIERS>_<ADB_SERIAL>
+#  e.g. adbkey_aabbcc00 or adbkey_PROJECT42_aabbcc00 or adbkey_FACILITY1_PROJECT42_aabbcc00
+# Could not be empty.
+adb_keys_path: "C:/Users/FOOBAR/.android/adb_keys"
+
+# Multiple paths to ADB keys that should be tried if no propper key was found in adb_keys_path.
+# Leave empty or comment out to diable it.
+adb_default_keys: ["C:/Users/FOOBAR/.android/adb_keys/adbkey_PROJECT42_default"]
+
+# Path to folder whose content should be copied to the device and made executable.
+# Leave empty or comment out to disable it.
+# DO NOT USE, ONLY FOR TESTING!
+workspace_source_path: "C:/Users/FOOBAR/ADB_workspace"
+
+# Path to log file.
+# Leave empty, comment out or put in the word "console" to write logs to stdout.
+logfile: "./adbXchange.log"
+
+# Time in seconds when an automatic reload shall be done.
+# Setting it to less than 15 means 15.
+refresh_cycle: 60
