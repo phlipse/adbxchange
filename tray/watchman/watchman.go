@@ -6,7 +6,8 @@ import (
 	"github.com/phlipse/systray"
 )
 
-type watchman struct {
+// Watchman contains registry of menu items and their current state.
+type Watchman struct {
 	mutex       sync.RWMutex
 	mainItems   []*systray.MenuItem
 	deviceItems []*systray.MenuItem
@@ -15,19 +16,21 @@ type watchman struct {
 }
 
 var (
-	watchmanInstance *watchman
+	watchmanInstance *Watchman
 	watchmanInit     sync.Once
 )
 
-func Get() *watchman {
+// Get returns the watchman instance.
+func Get() *Watchman {
 	watchmanInit.Do(func() {
-		watchmanInstance = &watchman{}
+		watchmanInstance = &Watchman{}
 	})
 
 	return watchmanInstance
 }
 
-func (w *watchman) Register(m *systray.MenuItem) {
+// Register adds a menu item to the registry.
+func (w *Watchman) Register(m *systray.MenuItem) {
 	w.mutex.Lock()
 	defer w.mutex.Unlock()
 
@@ -38,14 +41,16 @@ func (w *watchman) Register(m *systray.MenuItem) {
 	}
 }
 
-func (w *watchman) GetDevices() []*systray.MenuItem {
+// GetDevices returns a list of device menu items.
+func (w *Watchman) GetDevices() []*systray.MenuItem {
 	w.mutex.RLock()
 	defer w.mutex.RUnlock()
 
 	return w.deviceItems
 }
 
-func (w *watchman) Lock() {
+// Lock locks the registered menu items.
+func (w *Watchman) Lock() {
 	w.mutex.Lock()
 	defer w.mutex.Unlock()
 
@@ -63,7 +68,8 @@ func (w *watchman) Lock() {
 	}
 }
 
-func (w *watchman) Unlock() {
+// Unlock unlocks the registered menu items.
+func (w *Watchman) Unlock() {
 	w.mutex.Lock()
 	defer w.mutex.Unlock()
 
@@ -80,7 +86,8 @@ func (w *watchman) Unlock() {
 	w.locked = false
 }
 
-func (w *watchman) Locked() bool {
+// Locked returns if the menu items are currently locked.
+func (w *Watchman) Locked() bool {
 	w.mutex.RLock()
 	defer w.mutex.RUnlock()
 

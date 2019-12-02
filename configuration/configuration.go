@@ -17,7 +17,8 @@ const (
 	minRefresh    = 15
 )
 
-type configuration struct {
+// Configuration contains all configuration parameters from configuration file.
+type Configuration struct {
 	AndroidDirectory string   `yaml:"android_directory_path"`
 	ADBKeysPath      string   `yaml:"adb_keys_path"`
 	ADBDefaultKeys   []string `yaml:"adb_default_keys"`
@@ -27,11 +28,12 @@ type configuration struct {
 }
 
 var (
-	configInstance *configuration
+	configInstance *Configuration
 	configInit     sync.Once
 )
 
-func Get() *configuration {
+// Get returns configuration instance.
+func Get() *Configuration {
 	configInit.Do(mustRead)
 
 	return configInstance
@@ -43,7 +45,7 @@ func mustRead() {
 		path = filepath.FromSlash(defaultConfig)
 	}
 
-	var c configuration
+	var c Configuration
 
 	f, err := ioutil.ReadFile(path)
 	if err != nil {

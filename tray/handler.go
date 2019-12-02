@@ -6,8 +6,10 @@ import (
 	"github.com/phlipse/systray"
 )
 
+// MaxDevices defines the maximum of simultaneous devices.
 const MaxDevices = 5
 
+// ReadyHandler is executed on tray ready.
 func ReadyHandler() {
 	c := configuration.Get()
 	w := watchman.Get()
@@ -51,4 +53,5 @@ func ReadyHandler() {
 	reloadDevices(true)
 }
 
+// ExitHandler is executed on tray exit.
 func ExitHandler() {}
