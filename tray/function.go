@@ -86,17 +86,10 @@ func deviceFunction(m *systray.MenuItem) {
 			// bad workaround with found, should be coded in a smarter way
 			found := false
 			for idx := range c.ADBDefaultKeys {
-				if !found {
-					loadADBKey(c.ADBDefaultKeys[idx], c.ADBKeysPath, c.AndroidDirectory)
-					if state, err := adb.GetDeviceState(m.GetTitle()); err == nil {
-						if state == adb.DeviceOnline {
-							found = true
-						} else if state == adb.DeviceOffline {
-							// if device is offline and not unauthorized we have a not working ADB client
-							// some clients appear via virtual USB port but are disabled in some way
-							dialog.Message("Please check if ADB is enabled on the device!").Title("ADB seems to be disabled").Info()
-						}
-					}
+				loadADBKey(c.ADBDefaultKeys[idx], c.ADBKeysPath, c.AndroidDirectory)
+				if state, err := adb.GetDeviceState(m.GetTitle()); err == nil && state == adb.DeviceOnline {
+					found = true
+					break
 				}
 			}
 			if found {
