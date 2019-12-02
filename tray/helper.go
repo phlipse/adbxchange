@@ -81,7 +81,7 @@ func reloadDevices(restart bool) error {
 		// remove old devices
 		m[idx].Uncheck()
 		m[idx].Disable()
-		m[idx].SetTitle("DEVICE")	// needs to be set before Hide()
+		m[idx].SetTitle("DEVICE") // needs to be set before Hide()
 		m[idx].Hide()
 
 		// populate new ones

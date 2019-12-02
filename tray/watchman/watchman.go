@@ -11,7 +11,7 @@ type watchman struct {
 	mainItems   []*systray.MenuItem
 	deviceItems []*systray.MenuItem
 	prevState   []int
-	locked		bool	// stateful locking flag
+	locked      bool // stateful locking flag
 }
 
 var (

@@ -13,7 +13,7 @@ func ReadyHandler() {
 	w := watchman.Get()
 
 	// setup basic stuff
-	systray.SetIcon(iconDeviceRefresh)	// correct icon will be set during reload of devices
+	systray.SetIcon(iconDeviceRefresh) // correct icon will be set during reload of devices
 	systray.SetTitle("adbXchange")
 
 	menuReload := systray.AddMenuItem("reload", "reload")
