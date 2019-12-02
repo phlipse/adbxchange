@@ -71,7 +71,7 @@ func mustRead() {
 	}
 
 	if len(c.ADBDefaultKeys) > 0 {
-		for idx, _ := range c.ADBDefaultKeys {
+		for idx := range c.ADBDefaultKeys {
 			if stat, err := os.Stat(filepath.FromSlash(c.ADBDefaultKeys[idx])); err != nil || !stat.Mode().IsRegular() {
 				// remove key
 				c.ADBDefaultKeys = append(c.ADBDefaultKeys[:idx], c.ADBDefaultKeys[idx+1:]...)

@@ -81,11 +81,11 @@ func deviceFunction(m *systray.MenuItem) {
 			continue
 		}
 
-		// developement keys as fallback
+		// development keys as fallback
 		if len(c.ADBDefaultKeys) > 0 {
 			// bad workaround with found, should be coded in a smarter way
 			found := false
-			for idx, _ := range c.ADBDefaultKeys {
+			for idx := range c.ADBDefaultKeys {
 				if !found {
 					loadADBKey(c.ADBDefaultKeys[idx], c.ADBKeysPath, c.AndroidDirectory)
 					if state, err := adb.GetDeviceState(m.GetTitle()); err == nil {

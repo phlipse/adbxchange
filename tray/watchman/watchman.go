@@ -55,7 +55,7 @@ func (w *watchman) Lock() {
 
 	t := append(w.mainItems, w.deviceItems...)
 
-	for idx, _ := range t {
+	for idx := range t {
 		if !t[idx].Disabled() {
 			w.prevState = append(w.prevState, idx)
 			t[idx].Disable()
@@ -69,7 +69,7 @@ func (w *watchman) Unlock() {
 
 	t := append(w.mainItems, w.deviceItems...)
 
-	for idx, _ := range w.prevState {
+	for idx := range w.prevState {
 		// we need a dedicated check for empty device slots
 		// reload could reveal an absent device that was cached in prevState
 		if t[idx].GetTitle() != "DEVICE" {

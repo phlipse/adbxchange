@@ -77,7 +77,7 @@ func reloadDevices(restart bool) error {
 	m := w.GetDevices()
 
 	cur := 0
-	for idx, _ := range m {
+	for idx := range m {
 		// remove old devices
 		m[idx].Uncheck()
 		m[idx].Disable()
