@@ -49,13 +49,13 @@ func mustRead() {
 
 	f, err := ioutil.ReadFile(path)
 	if err != nil {
-		silo.PrintConsole(fmt.Errorf("could not read config from file: &s", defaultConfig).Error())
+		silo.PrintConsole(fmt.Errorf("could not read config from file: %s", defaultConfig).Error())
 		os.Exit(1)
 	}
 
 	err = yaml.Unmarshal(f, &c)
 	if err != nil {
-		silo.PrintConsole(fmt.Errorf("could not parse config from file: &s", defaultConfig).Error())
+		silo.PrintConsole(fmt.Errorf("could not parse config from file: %s", defaultConfig).Error())
 		os.Exit(1)
 	}
 
